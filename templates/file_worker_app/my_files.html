@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="home_title">News</div>
+    <div class="breadcrumbs">
+        <ul class="d-flex flex-row align-items-center justify-content-start">
+            <li><a href="index.html">Home</a></li>
+            <li>News/aaaa</li>
+        </ul>
+    </div>
+<div class="news_post_content">
+    <div class="my_file">
+        <ul>
+            {% for f in files %}
+            <li>
+                <p>{{ f.username }}</p>
+                <a href="{% url 'download' f.id %}">Download</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

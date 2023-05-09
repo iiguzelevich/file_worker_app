@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <style>
+  .round {
+   width: 300px; height: 300px;
+   border-radius: 50%;
+   background-size: auto 300px;
+  }
+  </style>
+<div class="news_post_content">
+    <div class="my_file">
+      <ul>
+        {% if data.photo%}
+          <li><img src="{{ data.photo.url }}" alt="" class="round"></li>
+        {% endif %}
+        <li><p>Name: {{ user.username }}</li>
+        <li><p>Information: {{ data.information }}</li>
+        <li><p>Interests: {{ data.interests }}</li>
+        <li><p>Email: {{ user.email }}</li>
+        <li><p>Birthday: {{ data.birth_day }}</li>
+      </ul>
+      <br>
+    <a href="{% url 'edit_personal_data' user.id %}">EDIT</a>
+</div>
+</div>
+
+{% endblock %}

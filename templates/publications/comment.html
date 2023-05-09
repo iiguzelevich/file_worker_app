@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="my_file">
+	{% if file.format_file == "pdf" %}
+	<p>{{ file.file_name }}</p>
+	{% elif file.format_file == "mp3" %}
+	<p>{{ file.file_name }}</p>
+	<audio controls>
+		<source src="{{ file.file_source.url }}" type="audio/mp3">
+	</audio>
+	{% elif file.format_file == "gif" %}
+	<p>{{ file.file_name }}</p>
+	<img src="{{ file.file_source.url }}" width="600" />
+	{% endif %}
+</div>
+<div class="contact_container">
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button class="contact_button" type="submit">Comment</button>
+	</form>
+</div>
+<div class="comment">
+	{%for comment in comments%}
+	<ul>
+		<li>
+			<p class="comment_text">{{ comment.comment_text}}<p>
+			<p class="by_user">User: {{ comment.owner }}<p>
+		</li>
+	</ul>
+	{% endfor %}
+</div>
+{% endblock %}

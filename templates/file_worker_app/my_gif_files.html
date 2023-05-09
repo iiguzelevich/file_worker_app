@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="home_title">PDF Files</div>
+<div class="file_content">
+    <div class="my_file">
+        <figure>
+        <ul>
+            {% for file in files %}
+            <li>
+                <p>{{ file.file_name }}</p>
+                <img src="{{ file.gif_file.url }}" width="700">
+                <br>
+                <a href="{{ file.get_absolute_url }}">Edit</a>
+                <a href="{{ file.delete_gif }}">Delete</a>
+                {% if file.is_published == 0 %}
+                    <a href="{{ file.publish_gif }}">Publish</a>
+                {% endif%}
+            </li>
+            {% endfor %}
+        </ul>
+        </figure>
+    </div>
+</div>
+{% endblock %}

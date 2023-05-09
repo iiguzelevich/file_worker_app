@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="controls">
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="contact_button" type="submit">add</button>
+      <button class="contact_button" type="reset">reset</button>
+        <span>{{error}}</span>
+    </form>
+</div>
+<div class="news_post_text">
+    <p>Enter the file name.Select the file with the extension .pdf to convert to MP3 format.</p>
+</div>
+{% endblock %}

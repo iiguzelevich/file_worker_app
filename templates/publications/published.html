@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="home_title">News</div>
+<div class="news_post_content">
+<!--    <div class="my_file">-->
+        <ul>
+            {% for file in files %}
+            <li>
+                {% if file.format_file == "pdf" %}
+                <p>{{ file.file_name }}</p>
+
+                {% elif file.format_file == "mp3" %}
+                <p>{{ file.file_name }}</p>
+                <audio controls>
+                    <source src="{{ file.file_source.url }}" type="audio/mp3">
+                </audio>
+
+                {% elif file.format_file == "gif" %}
+                <p>{{ file.file_name }}</p>
+                <img src="{{ file.file_source.url }}" width="600" />
+                {% endif %}
+
+                <div class="news_post_meta">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                        <li>by <a href="#">{{ file.owner }}</a></li>
+                        <li><a href="{% url 'comment_file' file.file_name %}">Comments</a></li>
+                        {% if file.owner_id != user.id %}
+                        <li><a href="{{ file.subscribe }}">Subscribe to user publications</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+</div>
+{% endblock %}
